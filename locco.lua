@@ -126,7 +126,7 @@ end
 
 -- We need the script location to add the script's directory to the package
 -- path and to copy the style sheet from.
-script_path = arg[0]:match('(.+)/.+')
+script_path = arg[0]:match('(.+)\\.+')
 package.path = table.concat({
   script_path..'/?.lua',
   package.path
@@ -144,7 +144,7 @@ require 'template'
 function ensure_directory(source)
   local path = source:match('(.+)/.+$')
   if not path then path = '.' end
-  os.execute('mkdir -p '..path..'/docs')
+  os.execute('mkdir '..path..'\\docs')
   return path
 end
 
@@ -251,4 +251,4 @@ for i=1, #arg do
   generate_documentation(arg[i], path, filename, jump_to)
   print(arg[i]..' --> '..path..'/docs/'..filename:gsub('lua$', 'html'))
 end
-os.execute('cp '..script_path..'/locco.css '..path..'/docs')
+os.execute('copy '..script_path..'\\locco.css '..path..'\\docs')
