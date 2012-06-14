@@ -210,7 +210,7 @@ function highlight_lua(code)
           -- Iterate through Lua items and try to wrap operators,
           -- keywords and built-in functions in span elements.
           -- If nothing was highlighted go to the next category.
-          for item, sep in s:gmatch('([%a_]+)(%A+)') do
+          for item, sep in s:gmatch('([%a]+)(%A+)') do
             local span, n = wrap_in_span(item, operators, 'o')
             if span == item then
               span, n = wrap_in_span(item, keywords, 'k')
